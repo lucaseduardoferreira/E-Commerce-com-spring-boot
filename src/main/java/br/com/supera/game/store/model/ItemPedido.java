@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 
 @Data
@@ -25,11 +26,14 @@ public class ItemPedido {
     @ManyToOne
     @JoinColumn(name = "produto_id")
     private Produto produto;
-    private Double preco;
+    private BigDecimal preco;
     private Integer quantidade;
 
-    public double getSubtotal(){
-        return preco * quantidade;
+    public ItemPedido(Pedido pedido, Produto produto, Integer quantidade) {
+        this.pedido = pedido;
+        this.produto = produto;
+        this.quantidade = quantidade;
+        this.preco = produto.getPreco();
     }
 
 

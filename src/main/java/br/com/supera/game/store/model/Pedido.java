@@ -33,8 +33,10 @@ public class Pedido {
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itens = new ArrayList<>();
 
-    public Pedido(Cliente cliente) {
+    public Pedido(Cliente cliente, LocalDate dataPedido, BigDecimal total) {
+        this.id = id;
         this.cliente = cliente;
-
+        this.dataPedido = dataPedido;
+        this.total = total;
     }
 }
