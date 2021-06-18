@@ -29,8 +29,12 @@ public class Pedido {
     private LocalDate dataPedido;
     private BigDecimal total;
 
+
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itens = new ArrayList<>();
 
+    public Pedido(Cliente cliente) {
+        this.cliente = cliente;
 
+    }
 }

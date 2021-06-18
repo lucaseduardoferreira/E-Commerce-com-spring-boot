@@ -25,7 +25,13 @@ public class ItemPedido {
     @ManyToOne
     @JoinColumn(name = "produto_id")
     private Produto produto;
+    private Double preco;
     private Integer quantidade;
+
+    public double getSubtotal(){
+        return preco * quantidade;
+    }
+
 
 
 }
