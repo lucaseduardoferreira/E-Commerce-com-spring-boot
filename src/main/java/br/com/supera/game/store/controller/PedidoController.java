@@ -9,6 +9,7 @@ import br.com.supera.game.store.repository.ClienteRepository;
 import br.com.supera.game.store.repository.ItemPedidoRepository;
 import br.com.supera.game.store.repository.PedidoRepository;
 import br.com.supera.game.store.repository.ProdutoRepository;
+import br.com.supera.game.store.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,11 @@ public class PedidoController {
     @Autowired
     private ItemPedidoRepository itemPedidoRepository;
 
+    @Autowired
+    private PedidoService pedidoService;
+
+
+
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -48,6 +54,8 @@ public class PedidoController {
         }
 
         pedido.setItens(itensPedido);
+        pedido.setTotal(pedido.getTotal());
+        pedido.setFrete(pedidoService.calcularFrete(pedido.getQuantidadeTotal()));
 
         itemPedidoRepository.saveAll(itensPedido);
        return pedido;

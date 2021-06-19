@@ -36,6 +36,11 @@ public class ItemPedido {
         this.preco = produto.getPreco();
     }
 
+    public BigDecimal getSubTotal (){
+        return preco.multiply(new BigDecimal(quantidade));
+    }
+
+
 
 
 }
