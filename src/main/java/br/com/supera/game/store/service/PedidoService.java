@@ -10,9 +10,9 @@ import java.util.List;
 @Service
 public class PedidoService {
 
-    public BigDecimal calcularFrete(Integer quantidadeTotal){
+    public BigDecimal calcularFrete(Integer quantidadeItens){
         BigDecimal frete = BigDecimal.TEN;
-        frete = frete.multiply(new BigDecimal(quantidadeTotal));
+        frete = frete.multiply(new BigDecimal(quantidadeItens));
         if (frete.compareTo(new BigDecimal(250)) == 1){
             frete = BigDecimal.ZERO;
         }

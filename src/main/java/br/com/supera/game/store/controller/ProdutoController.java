@@ -1,6 +1,8 @@
 package br.com.supera.game.store.controller;
 
 
+import br.com.supera.game.store.controller.dto.DetalhesPedidoDto;
+import br.com.supera.game.store.model.Pedido;
 import br.com.supera.game.store.model.Produto;
 import br.com.supera.game.store.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +25,8 @@ public class ProdutoController {
     @Autowired
     private ProdutoRepository produtoRepository;
 
-   /* @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public List<Produto> lista(){
-        return produtoRepository.findAll();
-    }*/
-
     @GetMapping
-    public Page<Produto> lista(@RequestParam(required = false) String nomeCurso,
-                               @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable paginacao) {
+    public Page<Produto> lista(@PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable paginacao) {
 
         return produtoRepository.findAll(paginacao);
     }
@@ -44,9 +39,10 @@ public class ProdutoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Produto> atualizar(@PathVariable Long id, @RequestBody Produto produto) {
+        System.out.println("Atualizar");
         Optional<Produto> optional = produtoRepository.findById(id);
         if (optional.isPresent()) {
-            produto = produtoRepository.save(optional.get());
+            produto = produtoRepository.save(produto);
             return ResponseEntity.ok(produto);
         }
 
@@ -61,6 +57,15 @@ public class ProdutoController {
         }
         return ResponseEntity.notFound().build();
 
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<Produto> detalhar(@PathVariable Long id) {
+        Optional<Produto> produto = produtoRepository.findById(id);
+        if (produto.isPresent()) {
+            return ResponseEntity.ok(produto.get());
+        }
+
+        return ResponseEntity.notFound().build();
     }
 
 
