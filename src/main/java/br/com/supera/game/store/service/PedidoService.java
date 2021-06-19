@@ -1,11 +1,9 @@
 package br.com.supera.game.store.service;
 
 
-import br.com.supera.game.store.model.ItemPedido;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Service
 public class PedidoService {

@@ -40,9 +40,6 @@ public class PedidoController {
     @Autowired
     private PedidoService pedidoService;
 
-
-
-
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Pedido cadatrar(@RequestBody PedidoForm pedidoForm){
@@ -52,7 +49,6 @@ public class PedidoController {
         List<ItemPedido> itensPedido = new ArrayList<>();
         List<ItemPedidoForm> itensPedidoForm = pedidoForm.getItens();
 
-
         for(ItemPedidoForm itemPedidoForm : itensPedidoForm) {
             itensPedido.add(itemPedidoForm.converter(pedido, produtoRepository));
         }
@@ -60,7 +56,6 @@ public class PedidoController {
         pedido.setItens(itensPedido);
         pedido.setFrete(pedidoService.calcularFrete(pedido.getQuantidadeTotal()));
         pedido.setTotal(pedido.getTotal());
-
 
         itemPedidoRepository.saveAll(itensPedido);
        return pedido;
@@ -78,9 +73,7 @@ public class PedidoController {
         if (pedido.isPresent()) {
             return ResponseEntity.ok(new DetalhesPedidoDto(pedido.get()));
         }
-
         return ResponseEntity.notFound().build();
     }
-
 
 }

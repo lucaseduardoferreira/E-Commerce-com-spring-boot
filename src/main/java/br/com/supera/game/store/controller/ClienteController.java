@@ -1,10 +1,7 @@
 package br.com.supera.game.store.controller;
 
 
-import br.com.supera.game.store.controller.dto.DetalhesPedidoDto;
 import br.com.supera.game.store.model.Cliente;
-import br.com.supera.game.store.model.Pedido;
-import br.com.supera.game.store.model.Produto;
 import br.com.supera.game.store.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Entity;
 import java.util.Optional;
 
 
@@ -64,7 +60,6 @@ public class ClienteController {
         if (cliente.isPresent()) {
             return ResponseEntity.ok(cliente.get());
         }
-
         return ResponseEntity.notFound().build();
     }
 }

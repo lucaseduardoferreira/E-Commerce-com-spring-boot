@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -45,9 +44,9 @@ public class ProdutoController {
             produto = produtoRepository.save(produto);
             return ResponseEntity.ok(produto);
         }
-
         return ResponseEntity.notFound().build();
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> remover(@PathVariable Long id) {
         Optional<Produto> optional = produtoRepository.findById(id);
@@ -56,8 +55,8 @@ public class ProdutoController {
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();
-
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<Produto> detalhar(@PathVariable Long id) {
         Optional<Produto> produto = produtoRepository.findById(id);
@@ -67,7 +66,5 @@ public class ProdutoController {
 
         return ResponseEntity.notFound().build();
     }
-
-
 
 }
