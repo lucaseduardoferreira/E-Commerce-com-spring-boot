@@ -5,11 +5,16 @@ import br.com.supera.game.store.model.Pedido;
 import br.com.supera.game.store.model.Produto;
 import br.com.supera.game.store.repository.ProdutoRepository;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
 public class ItemPedidoForm {
 
+    @NotNull @NotEmpty
     private Long produto;
+
+    @NotNull @NotEmpty
     private Integer quantidade;
 
     public Long getProduto() {

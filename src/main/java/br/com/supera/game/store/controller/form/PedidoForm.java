@@ -7,6 +7,8 @@ import br.com.supera.game.store.repository.ClienteRepository;
 import br.com.supera.game.store.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,9 +17,11 @@ import java.util.Optional;
 
 public class PedidoForm {
 
+
     private Long idCliente;
 
     private BigDecimal total;
+
     private List<ItemPedidoForm> itens = new ArrayList<>();
 
 

@@ -33,7 +33,6 @@ public class Pedido {
     private BigDecimal frete;
 
 
-
     @JsonIgnore
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itens = new ArrayList<>();
@@ -46,11 +45,11 @@ public class Pedido {
     }
 
     public BigDecimal getTotal(){
-        BigDecimal soma = BigDecimal.ZERO;
+        BigDecimal totalPedido = this.frete;
         for (ItemPedido itemPedido : itens) {
-            soma = soma.add(itemPedido.getSubTotal());
+            totalPedido = totalPedido.add(itemPedido.getSubTotal());
         }
-        return soma;
+        return totalPedido;
     }
 
     public Integer getQuantidadeTotal(){
