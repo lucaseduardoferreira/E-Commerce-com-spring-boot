@@ -1,8 +1,8 @@
 # Avaliação Java - Store Games
 
-Avaliação proposta pela empresa Supera. Nessa API Rest, foi utilizada o framework Spring. Escolhi esse framework, 
-pois facilita a criação de aplicações Java, com poucas ou nenhuma configurações para executar o projeto. Para criar e salvar solicitações HTTP e HTTPs, foi usado a API CLient Postman. 
-O arquivo yml dado na proposta foi alterado para data.sql, onde na execução inicial do programa, já é inserido registros de produtos e clientes, para guardar tais dados, foi usado o banco de dados em memória H2
+Proposta da empresa Supera Tecnologia. 
+Nessa API Rest, foi utilizada o framework Spring. Escolhi esse framework, pois facilita a criação de aplicações Java, com poucas ou nenhuma configurações para executar o projeto. Para criar e salvar solicitações HTTP e HTTPs, foi usado a API CLient Postman. 
+O arquivo yml dado na proposta foi alterado para data.sql, onde na execução inicial do programa, já é inserido registros de produtos e clientes. Para guardar tais dados, foi usado o banco de dados em memória H2.
 
 
 ## Enpoints
