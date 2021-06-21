@@ -28,31 +28,30 @@ public class Pedido {
     private Cliente cliente;
 
     private LocalDate dataPedido;
-    private BigDecimal total;
-
+    private BigDecimal valorTotaProdutos;
     private BigDecimal frete;
+    private BigDecimal valorTotalPedido;
 
 
     @JsonIgnore
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itens = new ArrayList<>();
 
-    public Pedido(Cliente cliente, LocalDate dataPedido, BigDecimal total) {
-        this.id = id;
+    public Pedido(Cliente cliente, LocalDate dataPedido, BigDecimal valorTotaProdutos) {
         this.cliente = cliente;
         this.dataPedido = dataPedido;
-        this.total = total;
+        this.valorTotaProdutos = valorTotaProdutos;
     }
 
-    public BigDecimal getTotal(){
-        BigDecimal totalPedido = this.frete;
+    public BigDecimal getvalorTotaProdutos(){
+        BigDecimal valorTotalProdutos = BigDecimal.ZERO;
         for (ItemPedido itemPedido : itens) {
-            totalPedido = totalPedido.add(itemPedido.getSubTotal());
+            valorTotalProdutos = valorTotalProdutos.add(itemPedido.getSubTotal());
         }
-        return totalPedido;
+        return valorTotalProdutos;
     }
 
-    public Integer getQuantidadeTotal(){
+    public Integer getQuantidadeTotalItens(){
         Integer quantidade = 0;
         for (ItemPedido itemPedido : itens) {
             quantidade += itemPedido.getQuantidade();
@@ -60,6 +59,7 @@ public class Pedido {
         return quantidade;
 
     }
+
 
 
 

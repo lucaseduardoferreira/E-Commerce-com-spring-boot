@@ -10,14 +10,13 @@ import java.util.stream.Collectors;
 public class PedidoDto {
     private Long id;
     private String cliente;
-    private BigDecimal total;
+    private BigDecimal valorTotalPedido;
     private LocalDate dataPedido;
-
 
     public PedidoDto(Pedido pedido) {
         this.id = pedido.getId();
         this.cliente = pedido.getCliente().getNome();
-        this.total = pedido.getTotal();
+        this.valorTotalPedido = pedido.getValorTotalPedido();
         this.dataPedido = pedido.getDataPedido();
     }
 
@@ -33,8 +32,8 @@ public class PedidoDto {
         return dataPedido;
     }
 
-    public BigDecimal getTotal() {
-        return total;
+    public BigDecimal getValorTotalPedido() {
+        return valorTotalPedido;
     }
 
     public static List<PedidoDto> converter(List<Pedido> pedidos) {

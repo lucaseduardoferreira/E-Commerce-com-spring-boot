@@ -11,14 +11,14 @@ import java.util.stream.Collectors;
 public class DetalhesPedidoDto {
     private Long id;
     private String cliente;
-    private BigDecimal total;
+    private BigDecimal valorTotalPedido;
     private LocalDate dataPedido;
     private List<ProdutoDto> produtos;
 
     public DetalhesPedidoDto(Pedido pedido) {
         this.id = pedido.getId();
         this.cliente = pedido.getCliente().getNome();
-        this.total = pedido.getTotal();
+        this.valorTotalPedido = pedido.getValorTotalPedido();
         this.dataPedido = pedido.getDataPedido();
         this.produtos = new ArrayList<>();
         this.produtos.addAll(pedido.getItens().stream().map(ProdutoDto::new).collect(Collectors.toList()));
@@ -32,8 +32,8 @@ public class DetalhesPedidoDto {
         return cliente;
     }
 
-    public BigDecimal getTotal() {
-        return total;
+    public BigDecimal getValorTotalPedido() {
+        return valorTotalPedido;
     }
 
     public LocalDate getDataPedido() {
