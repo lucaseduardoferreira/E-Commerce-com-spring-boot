@@ -1,5 +1,6 @@
 package br.com.supera.game.store.controller.form;
 
+import br.com.supera.game.store.exception.IDInvalidoException;
 import br.com.supera.game.store.model.ItemPedido;
 import br.com.supera.game.store.model.Pedido;
 import br.com.supera.game.store.model.Produto;
@@ -7,7 +8,6 @@ import br.com.supera.game.store.repository.ProdutoRepository;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Optional;
 
 public class ItemPedidoForm {
 
@@ -34,7 +34,9 @@ public class ItemPedidoForm {
     }
 
     public ItemPedido converter(Pedido pedido, ProdutoRepository produtoRepository){
-        Optional<Produto> produto = produtoRepository.findById(this.produto);
-        return new ItemPedido(pedido, produto.get(), quantidade);
+        Produto produto = produtoRepository.findById(this.produto).orElseThrow(
+                ()-> new IDInvalidoException("Produto não cadastrado")
+        );
+        return new ItemPedido(pedido, produto, quantidade);
     }
 }

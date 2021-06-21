@@ -1,14 +1,9 @@
 package br.com.supera.game.store.controller.form;
 
+import br.com.supera.game.store.exception.IDInvalidoException;
 import br.com.supera.game.store.model.Cliente;
-import br.com.supera.game.store.model.ItemPedido;
 import br.com.supera.game.store.model.Pedido;
 import br.com.supera.game.store.repository.ClienteRepository;
-import br.com.supera.game.store.repository.ProdutoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,7 +18,6 @@ public class PedidoForm {
     private BigDecimal total;
 
     private List<ItemPedidoForm> itens = new ArrayList<>();
-
 
     public void setIdCliente(Long idCliente) {
         this.idCliente = idCliente;
@@ -51,10 +45,11 @@ public class PedidoForm {
 
     public Pedido converter(ClienteRepository clienteRepository){
 
-        Optional<Cliente> cliente = clienteRepository.findById(idCliente);
+        Cliente cliente = clienteRepository.findById(idCliente)
+                .orElseThrow(() ->new IDInvalidoException("Cliente não cadastrado")
+                );
 
-
-        return new Pedido(cliente.get(), LocalDate.now(), total);
+        return new Pedido(cliente, LocalDate.now(), total);
 
     }
 }
